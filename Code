@@ -7,7 +7,7 @@ efgpredict <- read.xlsx("82_efgpredict.xlsx", sheetIndex = 1)
 # Subset the data by the three respective teams in question
 nor.data <- subset(efgpredict, Opp == "nor")
 nyk.data <- subset(efgpredict, Opp == "nyk")
-chi.data <- subset(efgpredict, Opp == "nyk")
+chi.data <- subset(efgpredict, Opp == "chi")
 
 
 # Subset the data by Season
