@@ -29,9 +29,9 @@ nyk2013 <- sum(nyk.data[1:2,]$fgm)/sum(nyk.data[1:2,]$fga)
 nyk2014 <- sum(nyk.data[3:5,]$fgm)/sum(nyk.data[3:5,]$fga)
 nyk2015 <- nyk.data[6,]$fgm/nyk.data[6,]$fga
 
-chi2013 <- sum(chi.data[1:2,]$fgm)/sum(chi.data[1:2,]$fga)
-chi2014 <- sum(chi.data[3:5,]$fgm)/sum(chi.data[3:5,]$fga)
-chi2015 <- chi.data[6,]$fgm/chi.data[6,]$fga
+chi2013 <- sum(chi.data[1:3,]$fgm)/sum(chi.data[1:3,]$fga)
+chi2014 <- sum(chi.data[4:11,]$fgm)/sum(chi.data[4:11,]$fga)
+chi2015 <- chi.data[12,]$fgm/chi.data[12,]$fga
 
 # Find ratio of team by season : season of FG percent
 rationor2013 <- nor2013/fgpct2013
