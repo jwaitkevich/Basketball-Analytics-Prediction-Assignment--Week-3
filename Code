@@ -1,0 +1,52 @@
+# Run required package. If not installed, use "install.packages('xlsx')"
+library(xlsx)
+
+# Read in the dataset
+efgpredict <- read.xlsx("82_efgpredict.xlsx", sheetIndex = 1)
+
+# Subset the data by the three respective teams in question
+nor.data <- subset(efgpredict, Opp == "nor")
+nyk.data <- subset(efgpredict, Opp == "nyk")
+chi.data <- subset(efgpredict, Opp == "nyk")
+
+
+# Subset the data by Season
+data2013 <- subset(efgpredict, Season == "2013")
+data2014 <- subset(efgpredict, Season == "2014")
+data2015 <- subset(efgpredict, Season == "2015")
+
+# Find field goal percentage by Season
+fgpct2013 <- sum(data2013$fgm)/sum(data2013$fga)
+fgpct2014 <- sum(data2014$fgm)/sum(data2014$fga)
+fgpct2015 <- sum(data2015$fgm)/sum(data2015$fga)
+
+# Find field goal percentage by Season by Team
+nor2013 <- nor.data[1,]$fgm/nor.data[1,]$fga
+nor2014 <- sum(nor.data[2:3,]$fgm)/sum(nor.data[2:3,]$fga)
+nor2015 <- sum(nor.data[4,]$fgm)/sum(nor.data[4,]$fga)
+
+nyk2013 <- sum(nyk.data[1:2,]$fgm)/sum(nyk.data[1:2,]$fga)
+nyk2014 <- sum(nyk.data[3:5,]$fgm)/sum(nyk.data[3:5,]$fga)
+nyk2015 <- nyk.data[6,]$fgm/nyk.data[6,]$fga
+
+chi2013 <- sum(chi.data[1:2,]$fgm)/sum(chi.data[1:2,]$fga)
+chi2014 <- sum(chi.data[3:5,]$fgm)/sum(chi.data[3:5,]$fga)
+chi2015 <- chi.data[6,]$fgm/chi.data[6,]$fga
+
+# Find ratio of team by season : season of FG percent
+rationor2013 <- nor2013/fgpct2013
+rationyk2013 <- nyk2013/fgpct2013
+ratiochi2013 <- chi2013/fgpct2013
+
+rationor2014 <- nor2014/fgpct2014
+rationyk2014 <- nyk2014/fgpct2014
+ratiochi2014 <- chi2014/fgpct2014
+
+rationor2015 <- nor2015/fgpct2015
+rationyk2015 <- nyk2015/fgpct2015
+ratiochi2015 <- chi2015/fgpct2015
+
+# Finally, the predictions as calculated by the "current" season average time the average ratio of team fg% compared to the league average
+norgame <- fgpct2015*(rationor2013 + rationor2014 + rationor2015)/3
+nykgame <- fgpct2015*(rationyk2013 + rationyk2014 + rationyk2015)/3
+chigame <- fgpct2015*(ratiochi2013 + ratiochi2014 + ratiochi2015)/3
